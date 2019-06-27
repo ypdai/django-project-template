@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block base_head_title %}{{ SYSTEM_NAME }}{% endblock %}
+    </title>
+    <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {% include "includes/head_style.html" %}
+    {% block base_head_style %}
+    {% endblock %}
+</head>
+
+<body class="sidebar-mini skin-purple-light" style="height: auto; min-height: 100%;">
+
+    {% block base_body_inner %}
+
+    {% endblock %}
+
+    {% include "includes/footer_script.html" %}
+
+    {% block base_foot_page_script %}
+    {% endblock %}
+
+</body>
+
+</html>

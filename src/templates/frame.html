@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block base_head_style %}
+{% endblock %}
+
+{% block base_body_inner %}
+
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="" class="logo">
+                <span class="logo-mini"><b>R</b>C</span>
+                <span class="logo-lg"><b>{{ SYSTEM_NAME }}</b></span>
+            </a>
+
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-uname="{{ USERNAME }}"
+                               id="aLoginUserName"> XXX
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="" target="_parent" id="aLogout">
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        {% block base_body_warpper_inner %}
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li class="header"></li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-table"></i><span>我的工作</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="">
+                                    <a href=""><i class="fa fa-circle-o"></i>工资核算</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+
+            <div class="content-wrapper" style="min-height: 960px;">
+                <section class="content">
+                    {% block main_content_wrapper_inner %}
+                    {% endblock %}
+                </section>
+            </div>
+
+            <footer class="main-footer">
+                <div class="hidden-xs">
+                    <span id="spanVersion" style="cursor: pointer;"><b>Version</b> 1.0.0</span>
+                </div>
+            </footer>
+        {% endblock %}
+    </div>
+
+{% endblock %}
+
+{% block base_foot_page_script %}
+    <script>
+        $(function () {
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    var csrftoken = $.cookie('csrftoken');
+                    if (!PageCommon.ajax.csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+        });
+    </script>
+    {% block sub_page_script %}
+    {% endblock %}
+{% endblock %}
